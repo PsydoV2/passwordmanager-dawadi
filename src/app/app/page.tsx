@@ -12,9 +12,10 @@ import styles from "@/components/vault/Vault.module.css";
 import { useClipboard } from "@/controller/useClipboard";
 import { CATEGORY_FILTERS, useEntryList } from "@/controller/useEntryList";
 import { useVault } from "@/controller/VaultContext";
+import { takeVaultIntent } from "@/controller/vaultIntent";
 import type { CategoryFilter } from "@/model/VaultService";
 
-type DialogState = { mode: "new" } | { mode: "edit"; id: string } | null;
+type DialogState = { mode: "new"; password?: string } | { mode: "edit"; id: string } | null;
 
 /** Ansicht „Tresor-Übersicht“: Suche, Kategorie-Filter, Liste und Details. */
 export default function VaultPage() {
@@ -36,6 +37,16 @@ export default function VaultPage() {
     [list, selectedId, mobileDetail],
   );
   const editing = dialog?.mode === "edit" ? entries.find((e) => e.id === dialog.id) : undefined;
+
+  // Auftrag aus Generator („Als Eintrag speichern“) oder Bericht („Passwort ändern“) ausführen.
+  useEffect(() => {
+    const intent = takeVaultIntent();
+    if (intent?.kind === "new") setDialog({ mode: "new", password: intent.password });
+    if (intent?.kind === "edit") {
+      setSelectedId(intent.id);
+      setDialog({ mode: "edit", id: intent.id });
+    }
+  }, []);
 
   // Tastenkürzel Strg+K (bzw. Cmd+K) springt in die Suche.
   useEffect(() => {
@@ -67,6 +78,7 @@ export default function VaultPage() {
     <EntryDialog
       key={dialog.mode === "edit" ? dialog.id : "new"}
       entry={editing}
+      initialPassword={dialog.mode === "new" ? dialog.password : undefined}
       onClose={() => setDialog(null)}
       onSaved={(id) => {
         toast(dialog.mode === "new" ? "Eintrag angelegt" : "Änderungen gespeichert");

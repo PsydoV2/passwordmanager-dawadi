@@ -50,6 +50,8 @@
   --warn-strong-text: #5a3a05;
   --ok: #12703f;
   --neutral-soft: #e8ece8;
+  --report-reused: #d9a13b;
+  --report-old: #9aa7a0;
 
   /* Stärkeanzeige: Balken und Beschriftung je Stufe */
   --strength-track: #dce3dd;
@@ -123,6 +125,8 @@
     --warn-strong-text: #f2d3a0;
     --ok: #5ccb8c;
     --neutral-soft: #20302a;
+    --report-reused: #c99437;
+    --report-old: #5f7068;
     --strength-track: #24332c;
     --strength-1: #ff7e6e;
     --strength-2: #f0be5c;
@@ -182,6 +186,8 @@
   --warn-strong-text: #f2d3a0;
   --ok: #5ccb8c;
   --neutral-soft: #20302a;
+  --report-reused: #c99437;
+  --report-old: #5f7068;
   --strength-track: #24332c;
   --strength-1: #ff7e6e;
   --strength-2: #f0be5c;

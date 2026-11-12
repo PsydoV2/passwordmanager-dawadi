@@ -1,0 +1,174 @@
+.section {
+  padding: 8px 24px;
+}
+
+.section > h2 {
+  padding: 16px 0 4px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.text {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.text p:not(.label) {
+  margin-top: 3px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Doppelte Klasse, damit die Breite Vorrang vor „width: 100%“ aus Field.module.css hat. */
+.select.select {
+  flex: 0 0 auto;
+  width: 180px;
+}
+
+/* ---------- Schalter ---------- */
+
+.switch {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 28px;
+  padding: 3px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--border-strong);
+  cursor: pointer;
+  display: flex;
+}
+
+.switch span {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease;
+}
+
+.switch[aria-checked="true"] {
+  background: var(--primary);
+}
+
+.switch[aria-checked="true"] span {
+  transform: translateX(20px);
+}
+
+/* ---------- Hell / Dunkel / System ---------- */
+
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.segment {
+  position: relative;
+  cursor: pointer;
+}
+
+.segment input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.segment span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-3);
+}
+
+.segment input:checked + span {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(23, 58, 47, 0.12);
+}
+
+.segment input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.storage {
+  padding: 14px 0 16px;
+}
+
+/* ---------- Gefahrenzone ---------- */
+
+.danger {
+  border-color: var(--danger-border);
+}
+
+.danger h2 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.confirm {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--danger-soft);
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.confirmTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.confirmActions {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 860px) {
+  .section {
+    padding: 4px 16px;
+  }
+
+  .select.select {
+    width: 100%;
+  }
+}

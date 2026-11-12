@@ -28,3 +28,11 @@ export function charKind(char: string): "digit" | "symbol" | "letter" {
   if (/[^A-Za-z]/.test(char)) return "symbol";
   return "letter";
 }
+
+const timeFormat = new Intl.DateTimeFormat("de-DE", { hour: "2-digit", minute: "2-digit" });
+
+/** „heute, 14:06“ bzw. „12.11.2026, 14:06“ */
+export function formatCheckedAt(timestamp: number, now: number = Date.now()): string {
+  const sameDay = new Date(timestamp).toDateString() === new Date(now).toDateString();
+  return `${sameDay ? "heute" : formatDate(timestamp)}, ${timeFormat.format(new Date(timestamp))}`;
+}

@@ -1,0 +1,209 @@
+/* ---------- Zusammenfassung ---------- */
+
+.summary {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.summary h2 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.bar {
+  display: flex;
+  gap: 3px;
+  height: 12px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar span {
+  flex-basis: 0;
+  min-width: 6px;
+}
+
+.seg-weak {
+  background: var(--danger);
+}
+
+.seg-reused {
+  background: var(--report-reused);
+}
+
+.seg-old {
+  background: var(--report-old);
+}
+
+.seg-ok {
+  background: var(--ok);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  text-decoration: none;
+}
+
+.stat:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-subtle);
+  color: var(--text);
+}
+
+.statLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.statValue {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ---------- Gruppen ---------- */
+
+.group {
+  overflow: hidden;
+}
+
+.groupHead {
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.groupHead h2 {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.groupHead h2 span {
+  margin-left: 4px;
+  font-weight: 500;
+  color: var(--text-3);
+}
+
+.groupHead p {
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px 12px 24px;
+  border-bottom: 1px solid var(--divider-soft);
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.itemText {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.itemTitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.itemReason {
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.fix {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.fix:hover {
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+
+/* ---------- Leer ---------- */
+
+.allGood {
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.allGood svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.allGood h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.allGood p {
+  margin-top: 4px;
+  color: var(--text-2);
+}
+
+@media (max-width: 860px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .item {
+    flex-wrap: wrap;
+    padding-left: 16px;
+  }
+
+  .itemText {
+    flex-basis: calc(100% - 140px);
+  }
+
+  .fix {
+    margin-left: 46px;
+    padding-left: 0;
+  }
+}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode, Ref } from "react";
 import styles from "./Button.module.css";
 import { Icon, type IconName } from "./Icon";
 
@@ -19,7 +19,7 @@ function classes({ variant = "secondary", size = "md", block }: Omit<StyleProps,
   return [styles.button, styles[variant], styles[size], block ? styles.block : "", extra ?? ""].join(" ");
 }
 
-type ButtonProps = StyleProps & ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = StyleProps & ButtonHTMLAttributes<HTMLButtonElement> & { ref?: Ref<HTMLButtonElement> };
 
 export function Button({ variant, size, icon, block, children, className, type = "button", ...rest }: ButtonProps) {
   return (
