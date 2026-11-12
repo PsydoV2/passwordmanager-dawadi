@@ -1,12 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import {
-  createEncryptedVault,
-  decryptVault,
-  encryptWithKey,
-  type UnlockedKey,
-} from "@/model/CryptoService";
+import { createEncryptedVault, decryptVault, encryptWithKey, type UnlockedKey } from "@/model/CryptoService";
 import { createDemoEntries, DEMO_MASTER_PASSWORD } from "@/model/demoData";
 import { buildSecurityReport, type SecurityReport } from "@/model/SecurityReport";
 import { DEFAULT_SETTINGS, type EntryDraft, type Settings, type VaultData, type VaultEntry } from "@/model/types";
@@ -157,10 +152,7 @@ export function VaultProvider({ children }: { children: React.ReactNode }) {
     [withData],
   );
 
-  const deleteEntry = useCallback(
-    (id: string) => withData((vault) => VaultService.deleteEntry(vault, id)),
-    [withData],
-  );
+  const deleteEntry = useCallback((id: string) => withData((vault) => VaultService.deleteEntry(vault, id)), [withData]);
 
   const toggleFavorite = useCallback(
     (id: string) => withData((vault) => VaultService.toggleFavorite(vault, id)),

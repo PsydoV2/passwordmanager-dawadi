@@ -15,7 +15,12 @@ interface PasswordInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
 /** Passwortfeld mit Button zum Anzeigen/Verbergen. Standard: verborgen. */
 export function PasswordInput({ value, onChange, invalid, emphasis, className, ...rest }: PasswordInputProps) {
   const [visible, setVisible] = useState(false);
-  const wrapClass = [styles.inputWrap, emphasis ? styles.emphasis : "", invalid ? styles.invalid : "", className ?? ""].join(" ");
+  const wrapClass = [
+    styles.inputWrap,
+    emphasis ? styles.emphasis : "",
+    invalid ? styles.invalid : "",
+    className ?? "",
+  ].join(" ");
   return (
     <div className={wrapClass}>
       <input

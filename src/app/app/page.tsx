@@ -12,7 +12,7 @@ import styles from "@/components/vault/Vault.module.css";
 import { useClipboard } from "@/controller/useClipboard";
 import { CATEGORY_FILTERS, useEntryList } from "@/controller/useEntryList";
 import { useVault } from "@/controller/VaultContext";
-import { takeVaultIntent } from "@/controller/vaultIntent";
+import { clearVaultIntent, peekVaultIntent } from "@/controller/vaultIntent";
 import type { CategoryFilter } from "@/model/VaultService";
 
 type DialogState = { mode: "new"; password?: string } | { mode: "edit"; id: string } | null;
@@ -22,10 +22,16 @@ export default function VaultPage() {
   const { entries, lock, addDemoEntries } = useVault();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<CategoryFilter>("Alle");
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  // Ein Auftrag aus Generator („Als Eintrag speichern“) oder Bericht („Passwort ändern“) bestimmt den Anfangszustand.
+  const [intent] = useState(peekVaultIntent);
+  const [selectedId, setSelectedId] = useState<string | null>(intent?.kind === "edit" ? intent.id : null);
   /** Am Smartphone: Details als eigene Ansicht statt neben der Liste. */
   const [mobileDetail, setMobileDetail] = useState(false);
-  const [dialog, setDialog] = useState<DialogState>(null);
+  const [dialog, setDialog] = useState<DialogState>(() => {
+    if (intent?.kind === "new") return { mode: "new", password: intent.password };
+    if (intent?.kind === "edit") return { mode: "edit", id: intent.id };
+    return null;
+  });
   const searchRef = useRef<HTMLInputElement>(null);
   const { list, counts, total, issues } = useEntryList(query, category);
   const { copy, clearSeconds } = useClipboard();
@@ -38,15 +44,8 @@ export default function VaultPage() {
   );
   const editing = dialog?.mode === "edit" ? entries.find((e) => e.id === dialog.id) : undefined;
 
-  // Auftrag aus Generator („Als Eintrag speichern“) oder Bericht („Passwort ändern“) ausführen.
-  useEffect(() => {
-    const intent = takeVaultIntent();
-    if (intent?.kind === "new") setDialog({ mode: "new", password: intent.password });
-    if (intent?.kind === "edit") {
-      setSelectedId(intent.id);
-      setDialog({ mode: "edit", id: intent.id });
-    }
-  }, []);
+  // Auftrag ist übernommen und wird gelöscht.
+  useEffect(clearVaultIntent, []);
 
   // Tastenkürzel Strg+K (bzw. Cmd+K) springt in die Suche.
   useEffect(() => {

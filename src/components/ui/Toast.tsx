@@ -31,7 +31,13 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
           <div className={styles.toast}>
             <Icon name="check" size={18} strokeWidth={2} className={styles.icon} />
             <span>{message}</span>
-            <IconButton icon="close" label="Hinweis schließen" size={16} className={styles.close} onClick={() => setMessage(null)} />
+            <IconButton
+              icon="close"
+              label="Hinweis schließen"
+              size={16}
+              className={styles.close}
+              onClick={() => setMessage(null)}
+            />
           </div>
         )}
       </div>

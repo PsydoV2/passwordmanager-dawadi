@@ -189,13 +189,20 @@ export default function SettingsPage() {
           </Button>
         </div>
         {confirm && (
-          <div id="confirm-box" role="alertdialog" aria-labelledby="c-title" aria-describedby="c-desc" className={styles.confirm}>
+          <div
+            id="confirm-box"
+            role="alertdialog"
+            aria-labelledby="c-title"
+            aria-describedby="c-desc"
+            className={styles.confirm}
+          >
             <p id="c-title" className={styles.confirmTitle}>
               <Icon name="warning" size={18} />
               Wirklich {entries.length === 1 ? "den einen Eintrag" : `alle ${entries.length} Einträge`} löschen?
             </p>
             <p id="c-desc">
-              Das lässt sich nicht rückgängig machen. Exportiere vorher eine Sicherung, falls du die Daten noch brauchst.
+              Das lässt sich nicht rückgängig machen. Exportiere vorher eine Sicherung, falls du die Daten noch
+              brauchst.
             </p>
             <div className={styles.confirmActions}>
               <Button ref={cancelRef} onClick={() => setConfirm(false)}>

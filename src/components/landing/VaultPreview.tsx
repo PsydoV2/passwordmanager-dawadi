@@ -17,7 +17,11 @@ const ROWS: { title: string; user: string; category: Category; issue?: IssueType
 /** Verkleinerte, nicht bedienbare Vorschau der Tresor-Übersicht für die Startseite. */
 export function VaultPreview() {
   return (
-    <div role="img" aria-label="Vorschau: Tresor-Übersicht von Latch mit Einträgen und Sicherheitshinweisen" className={styles.preview}>
+    <div
+      role="img"
+      aria-label="Vorschau: Tresor-Übersicht von Latch mit Einträgen und Sicherheitshinweisen"
+      className={styles.preview}
+    >
       <div className={styles.previewSide} aria-hidden="true">
         <p className={styles.previewBrand}>Latch</p>
         <p className={`${styles.previewNav} ${styles.previewNavActive}`}>

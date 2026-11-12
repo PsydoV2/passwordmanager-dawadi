@@ -15,5 +15,9 @@ export const ISSUE_TEXT: Record<IssueType, string> = {
 
 /** Kleines Etikett „Schwach“, „Mehrfach“ oder „Alt“. */
 export function IssueTag({ type, small = false }: { type: IssueType; small?: boolean }) {
-  return <span className={`${styles.tag} ${styles[`tag-${type}`]} ${small ? styles.tagSmall : ""}`}>{ISSUE_LABEL[type]}</span>;
+  return (
+    <span className={`${styles.tag} ${styles[`tag-${type}`]} ${small ? styles.tagSmall : ""}`}>
+      {ISSUE_LABEL[type]}
+    </span>
+  );
 }

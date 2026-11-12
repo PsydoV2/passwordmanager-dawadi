@@ -14,9 +14,12 @@ export function setVaultIntent(intent: VaultIntent): void {
   pending = intent;
 }
 
-/** Liefert den Auftrag genau einmal und löscht ihn danach. */
-export function takeVaultIntent(): VaultIntent | null {
-  const intent = pending;
+/** Liest den Auftrag, ohne ihn zu löschen (z. B. für den Anfangszustand einer Seite). */
+export function peekVaultIntent(): VaultIntent | null {
+  return pending;
+}
+
+/** Löscht den Auftrag, nachdem er ausgeführt wurde – sonst würde er beim nächsten Besuch erneut ausgelöst. */
+export function clearVaultIntent(): void {
   pending = null;
-  return intent;
 }

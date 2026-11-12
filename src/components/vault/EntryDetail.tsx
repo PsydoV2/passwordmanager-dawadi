@@ -34,7 +34,9 @@ export function EntryDetail({ entry, issue, onEdit, onBack }: EntryDetailProps) 
   const copyValue = async (value: string, sensitive: boolean, what: string) => {
     try {
       await copy(value, { sensitive });
-      toast(sensitive ? `${what} kopiert · wird in ${clearSeconds} s aus der Zwischenablage gelöscht` : `${what} kopiert`);
+      toast(
+        sensitive ? `${what} kopiert · wird in ${clearSeconds} s aus der Zwischenablage gelöscht` : `${what} kopiert`,
+      );
     } catch {
       toast("Kopieren nicht möglich – der Browser hat den Zugriff auf die Zwischenablage verweigert.");
     }
@@ -84,7 +86,11 @@ export function EntryDetail({ entry, issue, onEdit, onBack }: EntryDetailProps) 
             <p className={`mono ${styles.fieldValue}`}>{entry.username || "–"}</p>
           </div>
           {entry.username && (
-            <IconButton icon="copy" label="Benutzername kopieren" onClick={() => copyValue(entry.username, false, "Benutzername")} />
+            <IconButton
+              icon="copy"
+              label="Benutzername kopieren"
+              onClick={() => copyValue(entry.username, false, "Benutzername")}
+            />
           )}
         </div>
 
@@ -107,7 +113,11 @@ export function EntryDetail({ entry, issue, onEdit, onBack }: EntryDetailProps) 
             aria-pressed={revealed}
             onClick={() => setRevealed((r) => !r)}
           />
-          <IconButton icon="copy" label="Passwort kopieren" onClick={() => copyValue(entry.password, true, "Passwort")} />
+          <IconButton
+            icon="copy"
+            label="Passwort kopieren"
+            onClick={() => copyValue(entry.password, true, "Passwort")}
+          />
         </div>
 
         <div className={`${styles.fieldRow} ${styles.strengthRow}`}>

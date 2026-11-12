@@ -38,7 +38,9 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches
       .keys()
-      .then((keys) => Promise.all(keys.filter((key) => key.startsWith("latch-") && key !== CACHE).map((key) => caches.delete(key))))
+      .then((keys) =>
+        Promise.all(keys.filter((key) => key.startsWith("latch-") && key !== CACHE).map((key) => caches.delete(key))),
+      )
       .then(() => self.clients.claim()),
   );
 });
@@ -49,7 +51,11 @@ self.addEventListener("activate", (event) => {
  */
 async function clean(response) {
   if (!response.redirected) return response;
-  return new Response(await response.blob(), { status: response.status, statusText: response.statusText, headers: response.headers });
+  return new Response(await response.blob(), {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
+  });
 }
 
 /** Netz zuerst, bei Fehler (offline) aus dem Cache. Erfolgreiche Antworten werden für später gespeichert. */
@@ -60,7 +66,8 @@ async function networkFirst(request, fallbackUrl) {
     if (response.ok) cache.put(request, response.clone());
     return response;
   } catch (error) {
-    const cached = (await cache.match(request, { ignoreSearch: true })) ?? (fallbackUrl && (await cache.match(fallbackUrl)));
+    const cached =
+      (await cache.match(request, { ignoreSearch: true })) ?? (fallbackUrl && (await cache.match(fallbackUrl)));
     if (cached) return cached;
     throw error;
   }

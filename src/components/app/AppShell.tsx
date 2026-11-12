@@ -43,6 +43,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className={styles.shell}>
+      {/* Erster Tab-Stopp: überspringt die Navigation (WCAG 2.4.1). */}
+      <a href="#inhalt" className="skip-link">
+        Zum Inhalt springen
+      </a>
       <aside className={styles.sidebar}>
         <div className={styles.logo}>
           <Logo href="/" size={24} />
@@ -78,7 +82,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </aside>
 
-      <main className={styles.main}>
+      <main id="inhalt" tabIndex={-1} className={styles.main}>
         <ToastProvider>{children}</ToastProvider>
       </main>
 

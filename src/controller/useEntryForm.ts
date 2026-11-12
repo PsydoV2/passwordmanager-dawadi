@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { DEFAULT_GENERATOR_OPTIONS, generatePassword } from "@/model/PasswordGenerator";
 import { checkStrength } from "@/model/StrengthMeter";
 import type { EntryDraft, GeneratorOptions, VaultEntry } from "@/model/types";
@@ -22,20 +22,19 @@ interface EntryFormOptions {
  */
 export function useEntryForm({ entry, initialPassword }: EntryFormOptions = {}) {
   const { addEntry, updateEntry, deleteEntry } = useVault();
+  // Neuer Eintrag ohne Vorgabe: direkt ein starkes Passwort vorschlagen.
+  // (Formulare werden erst nach dem Entsperren gerendert, das Passwort landet also nie im statischen HTML.)
   const [draft, setDraft] = useState<EntryDraft>(() =>
-    entry ? toDraft(entry) : { ...emptyDraft(), password: initialPassword ?? "" },
+    entry
+      ? toDraft(entry)
+      : {
+          ...emptyDraft(),
+          password: initialPassword ?? generatePassword({ ...DEFAULT_GENERATOR_OPTIONS, length: 18 }),
+        },
   );
   const [generator, setGenerator] = useState<GeneratorOptions>({ ...DEFAULT_GENERATOR_OPTIONS, length: 18 });
   const [submitted, setSubmitted] = useState(false);
   const [saving, setSaving] = useState(false);
-
-  // Neuer Eintrag ohne Vorgabe: direkt ein starkes Passwort vorschlagen.
-  useEffect(() => {
-    if (!entry && !initialPassword) {
-      setDraft((d) => ({ ...d, password: generatePassword({ ...DEFAULT_GENERATOR_OPTIONS, length: 18 }) }));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const set = useCallback(<K extends keyof EntryDraft>(key: K, value: EntryDraft[K]) => {
     setDraft((d) => ({ ...d, [key]: value }));

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { DEFAULT_GENERATOR_OPTIONS, entropyBits, generatePassword } from "@/model/PasswordGenerator";
 import { checkStrength } from "@/model/StrengthMeter";
 import type { GeneratorOptions } from "@/model/types";
@@ -8,7 +8,7 @@ import type { GeneratorOptions } from "@/model/types";
 /** Grenzen für den Längen-Schieberegler in der View. */
 export { MAX_LENGTH, MIN_LENGTH } from "@/model/PasswordGenerator";
 
-const KIND_KEYS =["uppercase", "lowercase", "digits", "symbols"] as const;
+const KIND_KEYS = ["uppercase", "lowercase", "digits", "symbols"] as const;
 
 /**
  * Zustand des Passwortgenerators: Optionen und aktuelles Passwort.
@@ -16,13 +16,8 @@ const KIND_KEYS =["uppercase", "lowercase", "digits", "symbols"] as const;
  */
 export function usePasswordGenerator(initial: GeneratorOptions = DEFAULT_GENERATOR_OPTIONS) {
   const [options, setOptions] = useState<GeneratorOptions>(initial);
-  const [password, setPassword] = useState("");
-
-  // Erst im Browser erzeugen, damit beim statischen Export kein Passwort im HTML landet.
-  useEffect(() => {
-    setPassword(generatePassword(initial));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // Die Generator-Seite wird erst nach dem Entsperren gerendert – das Passwort landet nie im statischen HTML.
+  const [password, setPassword] = useState(() => generatePassword(initial));
 
   /** Optionen ändern. Mindestens eine Zeichenart bleibt immer aktiv. */
   const update = useCallback(

@@ -16,9 +16,27 @@ import { setVaultIntent } from "@/controller/vaultIntent";
 import type { IssueType } from "@/model/types";
 
 const GROUPS: { type: IssueType; anchor: string; title: string; stat: string; hint: string }[] = [
-  { type: "weak", anchor: "schwach", title: "Schwache Passwörter", stat: "Schwach", hint: "Leicht zu erraten oder zu kurz" },
-  { type: "reused", anchor: "mehrfach", title: "Mehrfach verwendet", stat: "Mehrfach verwendet", hint: "Dasselbe Passwort bei mehreren Konten" },
-  { type: "old", anchor: "alt", title: "Alte Passwörter", stat: "Älter als 12 Monate", hint: "Seit über einem Jahr nicht geändert" },
+  {
+    type: "weak",
+    anchor: "schwach",
+    title: "Schwache Passwörter",
+    stat: "Schwach",
+    hint: "Leicht zu erraten oder zu kurz",
+  },
+  {
+    type: "reused",
+    anchor: "mehrfach",
+    title: "Mehrfach verwendet",
+    stat: "Mehrfach verwendet",
+    hint: "Dasselbe Passwort bei mehreren Konten",
+  },
+  {
+    type: "old",
+    anchor: "alt",
+    title: "Alte Passwörter",
+    stat: "Älter als 12 Monate",
+    hint: "Seit über einem Jahr nicht geändert",
+  },
 ];
 
 /** Ansicht „Sicherheitsbericht“ */
@@ -83,7 +101,10 @@ export default function ReportPage() {
             aria-label={`Verteilung: ${okCount} ohne Befund, ${counts.weak} schwach, ${counts.reused} mehrfach verwendet, ${counts.old} alt`}
           >
             {(["weak", "reused", "old", "ok"] as const).map(
-              (key) => counts[key] > 0 && <span key={key} className={styles[`seg-${key}`]} style={{ flexGrow: counts[key] }} />,
+              (key) =>
+                counts[key] > 0 && (
+                  <span key={key} className={styles[`seg-${key}`]} style={{ flexGrow: counts[key] }} />
+                ),
             )}
           </div>
           <div className={styles.stats}>
@@ -111,7 +132,12 @@ export default function ReportPage() {
         const items = groups[g.type];
         if (items.length === 0) return null;
         return (
-          <section key={g.type} id={g.anchor} aria-labelledby={`h-${g.anchor}`} className={`${page.card} ${styles.group}`}>
+          <section
+            key={g.type}
+            id={g.anchor}
+            aria-labelledby={`h-${g.anchor}`}
+            className={`${page.card} ${styles.group}`}
+          >
             <div className={styles.groupHead}>
               <h2 id={`h-${g.anchor}`}>
                 {g.title} <span>{items.length}</span>

@@ -57,8 +57,8 @@ export default function SetupPage() {
               <strong>Wird nie gespeichert.</strong> Aus dem Master-Passwort wird nur der Schlüssel abgeleitet.
             </li>
             <li>
-              <strong>Lieber lang als kompliziert.</strong> Vier zufällige Wörter sind stärker als ein kurzes
-              Passwort mit Sonderzeichen.
+              <strong>Lieber lang als kompliziert.</strong> Vier zufällige Wörter sind stärker als ein kurzes Passwort
+              mit Sonderzeichen.
             </li>
             <li>
               <strong>Nicht wiederherstellbar.</strong> Schreib es dir auf und bewahre es sicher auf.

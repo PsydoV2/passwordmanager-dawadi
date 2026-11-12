@@ -8,7 +8,8 @@ import { Icon } from "@/components/ui/Icon";
 import { StrengthBar } from "@/components/ui/StrengthBar";
 import { useEntryForm } from "@/controller/useEntryForm";
 import { MAX_LENGTH, MIN_LENGTH } from "@/controller/usePasswordGenerator";
-import { CATEGORIES, type Category, type VaultEntry } from "@/model/types";
+import { CATEGORIES } from "@/controller/useEntryList";
+import type { Category, VaultEntry } from "@/model/types";
 import styles from "./EntryDialog.module.css";
 
 interface EntryDialogProps {
@@ -37,10 +38,19 @@ export function EntryDialog({ entry, initialPassword, onClose, onSaved, onDelete
   const [confirmDelete, setConfirmDelete] = useState(false);
   const { draft, set, errors, generator } = form;
 
+  // Öffnen: Fokus ins erste Feld. Schließen: Fokus zurück auf den Button, der den Dialog geöffnet hat,
+  // damit Tastatur- und Screenreader-Nutzer an derselben Stelle weitermachen.
+  // Der Öffner wird beim ersten Rendern gemerkt – noch bevor der Dialog den Fokus übernimmt.
+  const [opener] = useState(() => (document.activeElement instanceof HTMLElement ? document.activeElement : null));
   useEffect(() => {
     const dialog = dialogRef.current;
     if (dialog && !dialog.open) dialog.showModal();
-  }, []);
+    const timer = window.setTimeout(() => document.getElementById("f-title")?.focus());
+    return () => {
+      window.clearTimeout(timer);
+      if (opener?.isConnected) opener.focus();
+    };
+  }, [opener]);
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -73,7 +83,10 @@ export function EntryDialog({ entry, initialPassword, onClose, onSaved, onDelete
           <div className={styles.row}>
             <div className={`${field.field} ${styles.grow2}`}>
               <label htmlFor="f-title" className={field.label}>
-                Titel <span aria-hidden="true" className={styles.required}>*</span>
+                Titel{" "}
+                <span aria-hidden="true" className={styles.required}>
+                  *
+                </span>
               </label>
               <input
                 id="f-title"
@@ -83,7 +96,6 @@ export function EntryDialog({ entry, initialPassword, onClose, onSaved, onDelete
                 aria-required="true"
                 aria-invalid={errors.title ? true : undefined}
                 aria-describedby={errors.title ? "f-title-err" : undefined}
-                autoFocus
                 autoComplete="off"
               />
               {errors.title && (
@@ -243,7 +255,12 @@ export function EntryDialog({ entry, initialPassword, onClose, onSaved, onDelete
         ) : (
           <div className={styles.foot}>
             {!form.isNew && (
-              <Button variant="ghost" icon="trash" className={styles.deleteButton} onClick={() => setConfirmDelete(true)}>
+              <Button
+                variant="ghost"
+                icon="trash"
+                className={styles.deleteButton}
+                onClick={() => setConfirmDelete(true)}
+              >
                 Löschen
               </Button>
             )}

@@ -5,6 +5,9 @@ import { CATEGORIES } from "@/model/types";
 import { countByCategory, filterEntries, type CategoryFilter } from "@/model/VaultService";
 import { useVault } from "./VaultContext";
 
+/** Kategorien für Auswahlfelder in der View. */
+export { CATEGORIES };
+
 export const CATEGORY_FILTERS: CategoryFilter[] = ["Alle", ...CATEGORIES];
 
 /** Gefilterte und sortierte Einträge für die Übersicht sowie die Zahlen für die Filter-Chips. */

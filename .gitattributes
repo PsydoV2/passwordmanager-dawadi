@@ -1,0 +1,3 @@
+# Einheitliche Zeilenenden (LF), passend zu Prettier – auch unter Windows.
+* text=auto eol=lf
+*.png binary

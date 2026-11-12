@@ -53,7 +53,11 @@ function clean(draft: EntryDraft): EntryDraft {
   };
 }
 
-export function addEntry(data: VaultData, draft: EntryDraft, now: number = Date.now()): { data: VaultData; entry: VaultEntry } {
+export function addEntry(
+  data: VaultData,
+  draft: EntryDraft,
+  now: number = Date.now(),
+): { data: VaultData; entry: VaultEntry } {
   const entry: VaultEntry = {
     ...clean(draft),
     id: crypto.randomUUID(),

@@ -52,7 +52,13 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 /** Quadratischer Button nur mit Icon (z. B. Kopieren, Anzeigen). */
 export function IconButton({ icon, label, size = 18, className, type = "button", ...rest }: IconButtonProps) {
   return (
-    <button type={type} aria-label={label} title={label} className={`${styles.iconButton} ${className ?? ""}`} {...rest}>
+    <button
+      type={type}
+      aria-label={label}
+      title={label}
+      className={`${styles.iconButton} ${className ?? ""}`}
+      {...rest}
+    >
       <Icon name={icon} size={size} />
     </button>
   );

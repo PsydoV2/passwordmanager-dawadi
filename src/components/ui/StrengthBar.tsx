@@ -19,7 +19,14 @@ export function StrengthBar({ strength, id, labelWidth = 64 }: StrengthBarProps)
         ))}
       </div>
       <span id={id} className={styles.label} style={{ flexBasis: labelWidth }}>
-        {label ? <><span className="sr-only">Stärke: </span>{label}</> : "–"}
+        {label ? (
+          <>
+            <span className="sr-only">Stärke: </span>
+            {label}
+          </>
+        ) : (
+          "–"
+        )}
       </span>
     </div>
   );
