@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useVault } from "@/controller/VaultContext";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { Logo } from "@/components/ui/Logo";
+import { ToastProvider } from "@/components/ui/Toast";
 import { ROUTES } from "./routes";
 import styles from "./AppShell.module.css";
 
@@ -77,7 +78,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </aside>
 
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main}>
+        <ToastProvider>{children}</ToastProvider>
+      </main>
 
       <nav aria-label="App-Navigation" className={styles.tabbar}>
         {NAV.map((item) => (

@@ -1,0 +1,675 @@
+.page {
+  height: 100%;
+  min-height: calc(100vh - 26px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Kopfzeile ---------- */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-right: 8px;
+}
+
+.heading h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.heading span {
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.mobileActions {
+  display: none;
+}
+
+.search {
+  flex: 1 1 280px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 9px;
+  background: var(--bg);
+  color: var(--text-3);
+}
+
+.search:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.search input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.search kbd {
+  font-size: 12px;
+  padding: 2px 6px;
+  border: 1px solid var(--border-strong);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--text-3);
+}
+
+.newButton {
+  min-height: 42px;
+}
+
+/* ---------- Filter-Chips ---------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.chip span {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+/* ---------- Liste und Details ---------- */
+
+.split {
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
+}
+
+.listCol {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.listHead {
+  display: flex;
+  gap: 14px;
+  padding: 10px 24px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  border-bottom: 1px solid var(--divider);
+}
+
+.listHead span:first-child {
+  flex: 1 1 auto;
+  padding-left: 50px;
+}
+
+.listHead span:last-child {
+  flex: 0 0 96px;
+  text-align: right;
+  margin-right: 48px;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rowWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--divider-soft);
+}
+
+.row {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 62px;
+  padding: 10px 8px 10px 24px;
+  border: 0;
+  background: var(--surface);
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.row:hover {
+  background: var(--surface-subtle);
+}
+
+.rowSelected,
+.rowSelected:hover {
+  background: var(--accent-soft);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.rowText {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.rowTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.rowUser {
+  font-size: 13px;
+  color: var(--text-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowCat {
+  flex: 0 0 96px;
+  text-align: right;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.rowCopy {
+  margin-right: 4px;
+}
+
+.favIcon {
+  display: inline-flex;
+  color: var(--teal);
+}
+
+.tag {
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tagSmall {
+  padding: 1px 6px;
+  font-size: 11px;
+}
+
+.tag-weak {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.tag-reused {
+  background: var(--warn-soft);
+  color: var(--warn-text);
+}
+
+.tag-old {
+  background: var(--neutral-soft);
+  color: var(--text-2);
+}
+
+.noHits {
+  padding: 64px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.noHits svg {
+  color: var(--icon-muted);
+}
+
+.noHitsTitle {
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.inlineLink {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- Detailansicht ---------- */
+
+.detail {
+  flex: 0 1 380px;
+  min-width: 320px;
+  border-left: 1px solid var(--divider);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--surface-subtle);
+}
+
+.backButton {
+  display: none;
+}
+
+.detailHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detailTitle {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-left: 4px;
+}
+
+.detailTitle h2 {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.detailTitle p {
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.outlined {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.favOn,
+.favOn:hover {
+  color: var(--teal);
+}
+
+.favOn svg {
+  fill: currentColor;
+}
+
+.issueBox {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.issueBox svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.issueBox .inlineLink {
+  color: inherit;
+}
+
+.issue-weak {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.issue-reused {
+  background: var(--warn-soft);
+  color: var(--warn-text);
+}
+
+.issue-old {
+  background: var(--neutral-soft);
+  color: var(--text-2);
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.fieldRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 64px;
+  padding: 10px 8px 10px 16px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.fieldRow:last-child {
+  border-bottom: 0;
+}
+
+.fieldRow > .fieldLabel {
+  margin-right: 12px;
+}
+
+.strengthRow {
+  padding-right: 16px;
+}
+
+.fieldText {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fieldLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+.fieldValue {
+  margin-top: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pwValue {
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+
+.char-digit {
+  color: var(--accent);
+}
+
+.char-symbol {
+  color: var(--teal);
+}
+
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+}
+
+.iconLink:hover {
+  background: var(--nav-active);
+  color: var(--text);
+}
+
+.note {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-2);
+  white-space: pre-wrap;
+}
+
+.meta {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--divider);
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+/* ---------- Leerer Tresor ---------- */
+
+.emptyVault {
+  min-height: calc(100vh - 26px);
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.emptyVault svg {
+  color: var(--accent);
+}
+
+.emptyVault h1 {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.emptyVault p {
+  max-width: 28em;
+  color: var(--text-2);
+}
+
+.emptyActions {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ---------- Mittlere Breite: Details unter die Liste ---------- */
+
+@media (max-width: 1100px) and (min-width: 861px) {
+  .split {
+    flex-direction: column;
+  }
+
+  .detail {
+    flex: 0 0 auto;
+    min-width: 0;
+    border-left: 0;
+    border-top: 1px solid var(--divider);
+  }
+}
+
+/* ---------- Smartphone ---------- */
+
+@media (max-width: 860px) {
+  .page,
+  .emptyVault {
+    min-height: calc(100vh - 84px);
+  }
+
+  .toolbar {
+    padding: 14px 12px 8px 20px;
+    gap: 10px;
+    border-bottom: 0;
+  }
+
+  .heading {
+    flex: 1 1 auto;
+  }
+
+  .heading h1 {
+    font-size: 28px;
+  }
+
+  .heading span {
+    display: none;
+  }
+
+  .mobileActions {
+    display: flex;
+  }
+
+  .newButton {
+    order: 2;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border-radius: 12px;
+  }
+
+  .newLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .search {
+    order: 3;
+    flex-basis: 100%;
+    margin-right: 8px;
+    height: 44px;
+  }
+
+  .search input {
+    font-size: 16px;
+  }
+
+  .search kbd {
+    display: none;
+  }
+
+  .chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 6px 20px 12px;
+  }
+
+  .chip {
+    height: 36px;
+    padding: 0 14px;
+  }
+
+  .listHead,
+  .rowCat {
+    display: none;
+  }
+
+  /* Am Smartphone ersetzt die Detailansicht die Liste – keine Vorauswahl hervorheben. */
+  .rowSelected,
+  .rowSelected:hover {
+    background: var(--surface);
+    box-shadow: none;
+  }
+
+  .row {
+    min-height: 64px;
+    padding-left: 20px;
+  }
+
+  .rowTitle {
+    font-size: 16px;
+  }
+
+  /* Details als eigene Ansicht */
+  .detail {
+    display: none;
+  }
+
+  .showDetail .toolbar,
+  .showDetail .chips,
+  .showDetail .listCol {
+    display: none;
+  }
+
+  .showDetail .detail {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    border-left: 0;
+    padding: 12px 20px 24px;
+    background: var(--surface);
+  }
+
+  .backButton {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    margin-left: -6px;
+    padding: 0 6px;
+    border: 0;
+    background: none;
+    color: var(--text-2);
+    font-size: 15px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 861px) {
+  .rowCopy {
+    display: none;
+  }
+
+  .rowWrap:hover .rowCopy,
+  .rowWrap:focus-within .rowCopy {
+    display: inline-flex;
+  }
+
+  .row {
+    padding-right: 52px;
+  }
+
+  .rowCopy {
+    position: absolute;
+    right: 4px;
+  }
+}

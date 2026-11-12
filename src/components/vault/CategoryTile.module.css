@@ -1,0 +1,37 @@
+.tile {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.privat {
+  background: var(--cat-privat-bg);
+  color: var(--cat-privat-fg);
+}
+
+.arbeit {
+  background: var(--cat-arbeit-bg);
+  color: var(--cat-arbeit-fg);
+}
+
+.schule {
+  background: var(--cat-schule-bg);
+  color: var(--cat-schule-fg);
+}
+
+.finanzen {
+  background: var(--cat-finanzen-bg);
+  color: var(--cat-finanzen-fg);
+}
+
+.shopping {
+  background: var(--cat-shopping-bg);
+  color: var(--cat-shopping-fg);
+}
+
+.sonstiges {
+  background: var(--cat-sonstiges-bg);
+  color: var(--cat-sonstiges-fg);
+}
