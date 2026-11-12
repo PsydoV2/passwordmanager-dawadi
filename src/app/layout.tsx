@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { ServiceWorker } from "@/components/app/ServiceWorker";
 import "./globals.css";
 
 // Schriften werden beim Build heruntergeladen und mit der App ausgeliefert (funktioniert auch offline).
@@ -9,6 +10,8 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 export const metadata: Metadata = {
   title: "Latch – Passwort-Manager",
   description: "Passwort-Manager, der deine Zugangsdaten verschlüsselt nur auf deinem Gerät speichert.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, title: "Latch", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {
@@ -21,7 +24,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de" className={`${sans.variable} ${mono.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ServiceWorker />
+      </body>
     </html>
   );
 }
