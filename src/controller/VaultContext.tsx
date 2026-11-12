@@ -35,6 +35,8 @@ interface VaultContextValue {
   entries: VaultEntry[];
   report: SecurityReport;
   settings: Settings;
+  /** Master-Passwort des Demo-Tresors, wird als Hilfe auf der Entsperren-Seite angezeigt. */
+  demoMasterPassword: string;
 
   createVault(masterPassword: string): Promise<void>;
   /** Legt einen Tresor mit Beispieldaten und dem Master-Passwort „demo“ an. */
@@ -217,6 +219,7 @@ export function VaultProvider({ children }: { children: React.ReactNode }) {
     entries,
     report,
     settings,
+    demoMasterPassword: DEMO_MASTER_PASSWORD,
     createVault,
     createDemoVault,
     unlock,

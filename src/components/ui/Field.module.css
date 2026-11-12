@@ -1,0 +1,92 @@
+/* Gemeinsame Formular-Stile: Feldgruppe, Beschriftung, Eingabe, Hinweise */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--text-3);
+}
+
+.input,
+.inputWrap {
+  min-height: 50px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.input {
+  width: 100%;
+  padding: 0 14px;
+  font-size: 16px;
+  color: var(--text);
+}
+
+textarea.input {
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+select.input {
+  padding: 0 12px;
+}
+
+.inputWrap {
+  display: flex;
+  align-items: center;
+  padding-right: 3px;
+}
+
+.inputWrap:focus-within,
+.input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.bare {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 48px;
+  padding: 0 14px;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.emphasis {
+  border: 1.5px solid var(--text);
+}
+
+.invalid,
+.input[aria-invalid="true"] {
+  border: 1.5px solid var(--danger);
+}
+
+.hint {
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--danger);
+}
+
+.success {
+  font-size: 14px;
+  color: var(--ok);
+}

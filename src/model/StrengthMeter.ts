@@ -82,6 +82,20 @@ export function checkStrength(password: string): StrengthResult {
   return { level, label: LABELS[level] };
 }
 
+export interface PasswordRule {
+  text: string;
+  ok: boolean;
+}
+
+/** Mindestanforderungen an das Master-Passwort (Checkliste beim Einrichten). */
+export function checkMasterPasswordRules(password: string): PasswordRule[] {
+  return [
+    { text: "Mindestens 12 Zeichen", ok: password.length >= 12 },
+    { text: "Groß- und Kleinbuchstaben", ok: /[a-z]/.test(password) && /[A-Z]/.test(password) },
+    { text: "Mindestens eine Ziffer oder ein Sonderzeichen", ok: /[^A-Za-z]/.test(password) },
+  ];
+}
+
 /** Ab welcher Stufe ein Passwort im Sicherheitsbericht als „schwach“ gilt. */
 export function isWeak(password: string): boolean {
   return checkStrength(password).level <= 1;

@@ -1,0 +1,111 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.md {
+  min-height: 44px;
+  padding: 0 16px;
+  font-size: 15px;
+}
+
+.lg {
+  min-height: 52px;
+  padding: 0 22px;
+  font-size: 16px;
+}
+
+.block {
+  display: flex;
+  width: 100%;
+}
+
+.primary,
+.primary:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.primary:hover {
+  filter: brightness(1.15);
+}
+
+.secondary,
+.secondary:hover {
+  background: var(--surface);
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.secondary:hover {
+  background: var(--surface-muted);
+}
+
+.ghost,
+.ghost:hover {
+  background: transparent;
+  color: var(--text);
+}
+
+.ghost:hover {
+  background: var(--nav-active);
+}
+
+.danger,
+.danger:hover {
+  background: var(--danger);
+  color: var(--surface);
+}
+
+.danger-outline,
+.danger-outline:hover {
+  background: var(--surface);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.link {
+  background: transparent;
+  color: var(--accent);
+}
+
+.link:hover {
+  color: var(--accent-hover);
+}
+
+.button:disabled {
+  background: var(--border);
+  border-color: transparent;
+  color: var(--text-3);
+  cursor: not-allowed;
+  filter: none;
+}
+
+.iconButton {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.iconButton:hover {
+  background: var(--nav-active);
+  color: var(--text);
+}

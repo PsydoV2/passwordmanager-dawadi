@@ -1,0 +1,55 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  --bar: var(--strength-track);
+  --text-color: var(--text-3);
+}
+
+.track {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.track span {
+  height: 5px;
+  border-radius: 3px;
+}
+
+.on {
+  background: var(--bar);
+}
+
+.off {
+  background: var(--strength-track);
+}
+
+.label {
+  flex: 0 0 auto;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.l1 {
+  --bar: var(--strength-1);
+  --text-color: var(--strength-1);
+}
+
+.l2 {
+  --bar: var(--strength-2);
+  --text-color: var(--strength-text-2);
+}
+
+.l3 {
+  --bar: var(--strength-3);
+  --text-color: var(--strength-3);
+}
+
+.l4 {
+  --bar: var(--strength-4);
+  --text-color: var(--strength-4);
+}

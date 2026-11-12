@@ -1,0 +1,38 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: var(--text);
+}
+
+.plate {
+  fill: var(--primary);
+}
+
+.bolt {
+  fill: var(--bg);
+}
+
+.word {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Auf umgekehrter Fläche: helle Platte, dunkler Riegel */
+.inverse,
+.inverse:hover {
+  color: var(--inverse-fg);
+}
+
+.inverse .plate {
+  fill: var(--inverse-fg);
+}
+
+.inverse .bolt {
+  fill: var(--inverse-bg);
+}
