@@ -34,6 +34,12 @@ const COMMON = [
   "master",
 ];
 
+/** Enthält das Passwort eines der häufigsten Passwörter? */
+export function containsCommonPassword(password: string): boolean {
+  const lower = password.toLowerCase();
+  return COMMON.some((word) => lower.includes(word));
+}
+
 /** Anzahl verschiedener Zeichenarten: Klein, Groß, Ziffer, Sonderzeichen. */
 function countCharKinds(password: string): number {
   return [/[a-z]/, /[A-Z]/, /[0-9]/, /[^A-Za-z0-9]/].filter((re) => re.test(password)).length;
@@ -52,15 +58,14 @@ function hasRunOrSequence(password: string): boolean {
 }
 
 /** Typisches Muster „Wort + Zahl am Ende“, z. B. „musik123“ oder „Zugfahrt2023“. */
-function isWordThenNumber(password: string): boolean {
+export function isWordThenNumber(password: string): boolean {
   return /^[A-Za-z]+[0-9]+$/.test(password);
 }
 
 export function checkStrength(password: string): StrengthResult {
   if (!password) return { level: 0, label: LABELS[0] };
 
-  const lower = password.toLowerCase();
-  if (COMMON.some((word) => lower.includes(word))) {
+  if (containsCommonPassword(password)) {
     return { level: 1, label: LABELS[1] };
   }
 
