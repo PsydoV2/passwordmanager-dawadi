@@ -46,7 +46,7 @@ Fertige Version bauen und lokal starten (nur hier ist der Service Worker aktiv, 
 
 ```bash
 npm run build    # statischer Export nach out/ + Service Worker vorbereiten
-npm start        # out/ auf http://localhost:3000 ausliefern
+npm start        # out/ auf http://localhost:3000 ausliefern (Port wird angezeigt)
 ```
 
 Weitere Befehle:

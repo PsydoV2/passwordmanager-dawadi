@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && node scripts/precache.mjs",
-    "start": "npx serve@latest out",
+    "start": "serve out",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -26,6 +26,10 @@
     "eslint-config-next": "^16.4.6",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.10.1",
+    "serve": "^14.2.7",
     "typescript": "npm:@typescript/typescript6@^6.0.2"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }
