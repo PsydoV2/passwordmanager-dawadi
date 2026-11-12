@@ -1,0 +1,14 @@
+# Abhängigkeiten
+/node_modules
+
+# Next.js Build
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Sonstiges
+.DS_Store
+*.log
+.env*.local
+.vscode/
